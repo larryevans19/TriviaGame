@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'scoreboard';
+    src: url('scoreboard.ttf');
+}
+
+body {
+    background-image: url("../images/bg.png");
+    background-size: 100% 100%;
+    font-family: 'scoreboard';
+    color: rgb(235, 171, 31);
+    font-style: normal;
+    font-size: 34px;
+    font-weight: bold;
+    text-align: center;
+
+}
