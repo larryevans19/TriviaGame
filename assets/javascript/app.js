@@ -5,7 +5,7 @@ $(document).ready(function () {
     triviaTime.start()
     //Event Listeners
     //Start Button Clicks
-    $("#start").on('click', triviaTime.start());
+    // $("#start").on('click', triviaTime.start());
     //Answer Buttons Clicks
     $(document).on('click', ".choices", triviaTime.choiceCheck);
 
@@ -86,6 +86,8 @@ const triviaTime = {
     //Other Controls
     controls: {
         currentIndex: 0,
+        intervalId: 0,
+        clockRunning: false,
     },
     //Game Function Methods
 
@@ -106,16 +108,33 @@ const triviaTime = {
 
     },
 
+
     clock: function () {
-        var intervalId;
-        var clockRunning = false;
-        triviaTime.scoreboard.clock = 8;
-        $("#clock").text(`00:0${triviaTime.scoreboard.clock}`);
-        if (!clockRunning) {
-            intervalId = setInterval(triviaTime.scoreboard.clock--, 1000);
-            clockRunning = true;
+
+        triviaTime.controls.clockRunning = false;
+
+        // debugger;
+        $("#clock").text("00:0" + triviaTime.scoreboard.clock);
+        if (!triviaTime.controls.clockRunning) {
+            triviaTime.controls.intervalId = setInterval(triviaTime.countDown, 1000);
+            triviaTime.controls.clockRunning = true;
+
         }
     },
+
+    countDown: function () {
+        console.log("Countdown Time:", triviaTime.scoreboard.clock)
+
+        if (triviaTime.scoreboard.clock > 0) {
+            triviaTime.scoreboard.clock--;
+            $("#clock").text(`00:0${triviaTime.scoreboard.clock}`);
+        } else {
+            clearInterval(triviaTime.controls.intervalId);
+            clockRunning = false;
+        }
+    },
+
+
     //
     // intro: function() {
     //     //Start Button Click Listener
@@ -127,14 +146,22 @@ const triviaTime = {
     start: function () {
         triviaTime.correct = 0;
         triviaTime.incorrect = 0;
-        triviaTime.scoreboardclock = 10;
+        triviaTime.scoreboard.clock = 8;
         triviaTime.controls.currentIndex = 0;
+        triviaTime.scoreboard.techScore = 0;
+        $("#tech").text(triviaTime.scoreboard.techScore);
+        triviaTime.scoreboard.oppScore = 0;
+        $("#opp").text(triviaTime.scoreboard.oppScore);
+        triviaTime.scoreboard.quarter = 1;
+        $("#quarter").text(triviaTime.scoreboard.quarter)
         triviaTime.play();
 
     },
 
     //Next Question Function
     play: function () {
+
+        triviaTime.scoreboard.clock = 8;
 
         $("#choices").empty();
 
@@ -153,13 +180,20 @@ const triviaTime = {
             $("#choices").append(playButton);
         };
 
+        triviaTime.clock();
+
     },
 
 
     //Choice Check Function to See if Answer is Correct
     choiceCheck: function () {
 
-        let clockTime
+        clearInterval(triviaTime.controls.intervalId);
+        triviaTime.controls.clockRunning = false;
+
+        let answerTime = triviaTime.scoreboard.clock;
+        console.log("Answer Time:", answerTime);
+
         let answer = $(this).attr("data-name");
         console.log("answer:", answer);
         let answerChoice = Object.values(triviaTime.answers)[triviaTime.controls.currentIndex];
@@ -167,8 +201,19 @@ const triviaTime = {
 
         if (answer === answerChoice) {
             //call correct answer function to show message
+            // debugger;
             triviaTime.correct++;
             triviaTime.controls.currentIndex++
+            if (answerTime > 4) {
+                triviaTime.scoreboard.techScore += 7;
+                $("#tech").text(triviaTime.scoreboard.techScore);
+                //TD Message
+            } else {
+                triviaTime.scoreboard.techScore += 3;
+                $("#tech").text(triviaTime.scoreboard.techScore);
+                //FG Message
+            }
+
             console.log("Correct Count:", triviaTime.correct)
             console.log("Current Index:", triviaTime.controls.currentIndex)
 
@@ -181,7 +226,15 @@ const triviaTime = {
             //call incorrect answer function to show message
             triviaTime.incorrect++;
             triviaTime.controls.currentIndex++
-
+            if (answerTime > 4) {
+                triviaTime.scoreboard.oppScore += 7;
+                $("#opp").text(triviaTime.scoreboard.oppScore);
+                //TD Message
+            } else {
+                triviaTime.scoreboard.oppScore += 3;
+                $("#opp").text(triviaTime.scoreboard.oppScore);
+                //FG Message
+            }
             console.log("Incorrect Count:", triviaTime.incorrect)
             console.log("Current Index:", triviaTime.controls.currentIndex)
             //check to see how much time was left to know how to adjust scoreboard
@@ -194,6 +247,14 @@ const triviaTime = {
 
 
         }
+
+        console.log("oculus:", (triviaTime.controls.currentIndex % 2 === 0));
+        if (triviaTime.controls.currentIndex % 2 === 0 && triviaTime.scoreboard.quarter <= 3) {
+            triviaTime.scoreboard.quarter++;
+            $("#quarter").text(triviaTime.scoreboard.quarter)
+            console.log("quarter:", triviaTime.scoreboard.quarter);
+        }
+
         if (triviaTime.controls.currentIndex < Object.values(triviaTime.questions).length) {
             triviaTime.play();
         } else {
