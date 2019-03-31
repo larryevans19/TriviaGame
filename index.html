@@ -1,4 +1,4 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 
 <head>
@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Tech Trivia Time</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="assets/images/fave.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -18,38 +19,45 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
+
 </head>
 
 <body>
-
-    <br><br>
-    <br><br>
-    <br><br>
-    <div class="jumbotron jumbotron-fluid play" style="display">
-        <div class="container">
-            <div class="row">
-                <div class="col-2 scoreboard">
-                    <h3>TECH</h3>
-                    <h1 class="display-2" id="wins">0</h1>
-                </div>
-                <div class="col-2 scoreboard">
-                    <h3>OPPONENT</h3>
-                    <h1 class="display-2" id="losses">0</h1>
-                </div>
-                <div class="col-2 scoreboard">
-                    <h3>GUESSES REMAINING</h3>
-                    <h1 class="display-3" id="remaining">00:05</h1>
-                </div>
-                <div class="col-2 scoreboard">
-                    <h3>CURRENT GUESS</h3>
-                    <h2 class="display-3" id="guess"></h2>
-                </div>
-                <div class="col-4 scoreboard">
-                    <h3>LETTERS GUESSED</h3>
-                    <h1 id="guessList"></h1>
-                    <h4 id="guessAlert"></h4>
-                </div>
+    <div class="container">
+        <div class="row" id='scoreboardrow'>
+            <div class="col-3 scoreboard">
+                <h3>TECH</h3>
+                <h1 class="display-5" id="tech">0</h1>
             </div>
+            <div class="col-3 scoreboard">
+                <h3>QUARTER</h3>
+                <h1 class="display-5" id="quarter">1</h1>
+            </div>
+            <div class="col-3 scoreboard">
+                <h3>GAME CLOCK</h3>
+                <h1 class="display-5" id="clock">00:08</h1>
+            </div>
+            <div class="col-3 scoreboard">
+                <h3>UGA</h3>
+                <h1 class="display-5" id="opp">0</h1>
+            </div>
+        </div>
+
+        <div class="jumbotron jumbotron-fluid play">
+            <h3 class="display-7" id="question">
+
+            </h3>
+            <h2 class="display-7" id="choices">
+                <button type="button" class="btn btn-outline-warning btn-block" id="choice0">Clint Castleberry</button>
+                <button type="button" class="btn btn-outline-warning btn-block" id="choice1">Bill Fincher</button>
+                <button type="button" class="btn btn-outline-warning btn-block" id="choice2">Joe Guyon</button>
+                <button type="button" class="btn btn-outline-warning btn-block" id="choice3">Pepper Rodgers</button>
+            </h2>
+
+        </div>
+    </div>
+
+
 
 </body>
 
