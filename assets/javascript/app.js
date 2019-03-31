@@ -131,6 +131,12 @@ const triviaTime = {
         } else {
             clearInterval(triviaTime.controls.intervalId);
             clockRunning = false;
+            triviaTime.incorrect++;
+            triviaTime.controls.currentIndex++
+            triviaTime.scoreboard.oppScore += 7;
+            $("#opp").text(triviaTime.scoreboard.oppScore);
+            //TD Message
+            triviaTime.play();
         }
     },
 
