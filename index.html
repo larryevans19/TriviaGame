@@ -43,7 +43,21 @@
             </div>
         </div>
 
-        <div class="jumbotron jumbotron-fluid play">
+        <div class="jumbotron jumbotron-fluid intro">
+            <h2 class="display-4" id="welcome">
+                WELCOME TO TECH TRIVIA TIME!
+            </h2>       
+            <h5 class="display-5" id="instructions">
+                Prepare to test your Georgia Tech sports trivia knowledge!  For each question, you will have
+                10 seconds to answer.  Correctly answer the question with more than 5 seconds remaining on the clock
+                and it is a TOUCHDOWN (7 points) for TECH!  Answer the question incorrectly with more than 5 seconds
+                remaining on the clock, or fail to guess an answer before time expires, and it is a TOUCHDOWN for UGA.
+                Answer correctly with less than 5 seconds remaining on the clock and it is a FIELD GOAL (3 points) for Tech.  Answer incorrectly with less than 3 seconds
+                remaining, but before time expires, and it is a FIELD GOAL for UGA.  Try to outscore UGA before the 4 quarters of action are complete.  
+            </h3>
+            <button type="button" class="btn btn-outline-warning btn-block" id="intro">Click here to kickoff the action!</button>
+        </div>
+        <div class="jumbotron jumbotron-fluid play" style="display: none">
             <h3 class="display-7" id="question">
 
             </h3>
@@ -53,6 +67,19 @@
                 <button type="button" class="btn btn-outline-warning btn-block" id="choice2">Joe Guyon</button>
                 <button type="button" class="btn btn-outline-warning btn-block" id="choice3">Pepper Rodgers</button>
             </h2>
+
+        </div>
+
+        <div class="jumbotron jumbotron-fluid postgame" style="display: none">
+            <h2 class="display-5" id="result">
+
+                </h3>
+                <h3 class="display-7" id="stats">
+                    FINAL STATS:
+
+                </h3>
+                <h3 class="display-7" id="correct">
+                    CORRECT ANSWERS:
 
         </div>
     </div>

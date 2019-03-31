@@ -1,14 +1,17 @@
 $(document).ready(function () {
 
     console.log(triviaTime.questions.Q2);
-
-    triviaTime.start()
     //Event Listeners
     //Start Button Clicks
-    // $("#start").on('click', triviaTime.start());
-    //Answer Buttons Clicks
+    $("#intro").on('click', function () {
+        delayButtonAlert = setTimeout(function () {
+            triviaTime.intro();
+        }, 3000);
+    })
+        // $("#start").on('click', triviaTime.start());
+        //Answer Buttons Clicks
     $(document).on('click', ".choices", triviaTime.choiceCheck);
-
+    
 });
 
 //Game Object
@@ -26,7 +29,7 @@ const triviaTime = {
         Q6: `The Georgia Tech baseball team played in the College World Series in all of the following seasons except:`,
         Q7: `Georgia Tech defeated Nebraska 45-21 in this bowl game to finish the 1990 season as the nation's only undefeated Division
             I team and secure a share of the school's 4th college football national championship:`,
-        Q8: `This Georgia Tech alum, who became the first golfer ever to win the sport's Grand Slam, is the only athlete in American
+        Q8: `This Georgia Tech alum, who became the first player ever to win golf's Grand Slam, is the only athlete in American
             history to receive 2 ticker tape parades through New York City:`,
         // Q9:  `Which of the following Georgia Tech track and field alums won a gold medal in Summer Olympic Games?`,
         // Q10: `This Georgia Tech football alum, who was inducted into the College Football Hall of Fame in 2018, set the NFL
@@ -92,6 +95,7 @@ const triviaTime = {
     //Game Function Methods
 
     gameOver: function () {
+        $("#clock").text("00:00");
         $("#question").empty();
         $("#choices").empty();
         $("#question").text("GAME OVER BITCH!")
@@ -136,23 +140,33 @@ const triviaTime = {
             triviaTime.scoreboard.oppScore += 7;
             $("#opp").text(triviaTime.scoreboard.oppScore);
             //TD Message
-            triviaTime.play();
+
+
+            if (triviaTime.controls.currentIndex < Object.values(triviaTime.questions).length) {
+                triviaTime.play();
+            } else {
+                triviaTime.gameOver()
+            }
+
         }
     },
 
 
     //
-    // intro: function() {
-    //     //Start Button Click Listener
-    //     $("#start").on('click', triviaTime.start);
-    //     $(".intro").hide();
-    //     $(".play").show();
-    // },
+    intro: function () {
+        //     //Start Button Click Listener
+        //     $("#start").on('click', triviaTime.start);
+        $(".intro").hide();
+        $(".play").show();
+        triviaTime.start();
+    },
+
     //Start Game Function
     start: function () {
         triviaTime.correct = 0;
         triviaTime.incorrect = 0;
-        triviaTime.scoreboard.clock = 8;
+        triviaTime.scoreboard.clock = 9;
+        $("#clock").text("00:09");
         triviaTime.controls.currentIndex = 0;
         triviaTime.scoreboard.techScore = 0;
         $("#tech").text(triviaTime.scoreboard.techScore);
@@ -167,7 +181,8 @@ const triviaTime = {
     //Next Question Function
     play: function () {
 
-        triviaTime.scoreboard.clock = 8;
+        triviaTime.scoreboard.clock = 9;
+        $("#clock").text("00:09");
 
         $("#choices").empty();
 
@@ -196,6 +211,8 @@ const triviaTime = {
 
         clearInterval(triviaTime.controls.intervalId);
         triviaTime.controls.clockRunning = false;
+
+
 
         let answerTime = triviaTime.scoreboard.clock;
         console.log("Answer Time:", answerTime);
@@ -270,14 +287,11 @@ const triviaTime = {
 
     },
 
-
     //Chill Function to Wait After Each Question is over before moving to the next question
     chill: function () {
         // const chillOut
 
         // setTimeout()
-    }
-
-
+    },
 
 }
