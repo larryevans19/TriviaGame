@@ -98,7 +98,7 @@ const triviaTime = {
 
     //Game Function Methods
 
-    //Game Over function is triggered once the determined number of questions have been asked.  
+    //Game Over function is called once the determined number of questions have been asked.  
     gameOver: function () {
         //Zero out the game clock because the game is over
         $("#clock").text("00:00");
@@ -112,7 +112,7 @@ const triviaTime = {
         if (triviaTime.scoreboard.techScore > triviaTime.scoreboard.oppScore) {
             triviaTime.victory();
             $("#message").text("JACKETS WIN!");
-            //If it's a TIE, we tell the player it's a tie and tell them to play again!
+            //If it's a TIE, we tell the player it's a tie and to play again!
         } else if (triviaTime.scoreboard.techScore === triviaTime.scoreboard.oppScore) {
             $("#message").html("<h1 class='display-2'><strong>IT'S A TIE! PLAY AGAIN!</strong></h1>");
             //If Tech didn't win, and it's not a tie, it means it's a loss.  The crowd will boo that.  And the
@@ -324,7 +324,7 @@ const triviaTime = {
                     triviaTime.uga(resultScore, answerChoice);
                 }, 1000);
             }
-            console.log("Incorrect Count:", triviaTime.statsincorrect)
+            console.log("Incorrect Count:", triviaTime.stats.incorrect)
             console.log("Current Index:", triviaTime.controls.currentIndex)
         }
 
@@ -356,9 +356,7 @@ const triviaTime = {
         audioVictory.load();
         audioVictory.play();
         $("#start").on('click', function () {
-            delayButtonAlert = setTimeout(function () {
-                audioVictory.pause();
-            }, 2000);
+            audioVictory.pause();
         });
     },
 
