@@ -3,16 +3,18 @@
     src: url('scoreboard.ttf');
 }
 
+
 body {
-    background-image: url("../images/bg.png");
+    background: url("../images/bg.png");
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     font-family: 'scoreboard';
     color: rgb(235, 171, 31);
     font-style: normal;
-    /* font-size: 2em; */
     font-weight: bold;
     text-align: center;
+    background-color: black;
+
 }
 
 .scoreboard {
