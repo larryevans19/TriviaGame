@@ -144,7 +144,6 @@ const triviaTime = {
         // console.log("Countdown Time:", triviaTime.scoreboard.clock)
         if (triviaTime.scoreboard.clock > 0) {
             triviaTime.scoreboard.clock--;
-            console.log("New clock:", triviaTime.scoreboard.clock)
             // let displayTime = triviaTime.clockFace(triviaTime.scoreboard.clock);
             $("#clock").text(triviaTime.clockFace(triviaTime.scoreboard.clock))
         } else {

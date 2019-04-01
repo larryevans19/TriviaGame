@@ -59,3 +59,15 @@ body {
 .display-2 {
     font-weight: bold;
 }
+
+@media screen 
+and (min-width: 1750px) {
+    
+    .container {
+        transform: scale(1.25);
+        margin-top: 1.75%;
+        min-height: 675px;
+    }
+
+
+}
